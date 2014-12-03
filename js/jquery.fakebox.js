@@ -1,9 +1,9 @@
 /*
  *  Fakebox Plugin for jQuery, version 0.1
  *  G. DIAS COELHO
- *  http://guillaumedias.fr
+ *  http://guillaume.dias-coelho.fr
  * 
- *  Plugin transform combobox in list item control 
+ *  This plugin transform a drop-down box in list items with more easy manipulation
  *  Dual licensed under the MIT or GPL Version 2 licenses.
  *  http://jquery.org/license
  * 
@@ -20,8 +20,8 @@
         
         base.init = function(){
             base.options = $.extend({},$.fakebox.defaultOptions, options);
+            base.$el.css("display","none");
             
-            base.$el.css('display','none');
             base.heightItem = 0;
             createElem(base.$el);
             
@@ -32,17 +32,20 @@
             base.item = $("ul li", construct);
             base.$hasHeader = 1;
 			base.nbItems = $('option',base.$el).size();
-			base.radio = $("input[type=radio]",base.wrapper)
+			
 			
             if (base.options.targetEffect == "list") { // list mode
+            	
             	 // open list with effect and speed option
+            	 
             	 base.handler.eq(1).click(function(){
-            	 	base.radio.focus();
+            	 	base.$el.focus();
             	 	// invert mode
 	        	 	if (base.options.openStyle == "inverse") {
 	        	 		// configure position for invert effect
+	        	 		
 	        	 		var decalageInvert = ((base.nbItems-1)*base.heightItem)+base.handler.height();
-        	 		
+	        	 		
 	        	 		base.container.css({
 	        	 			'bottom':'-'+decalageInvert+'px',
 	        	 			'top':'auto'
@@ -68,10 +71,8 @@
 	            base.handler.eq(1).toggle(function(e){
 	            	e.stopPropagation();
 			    	toggleCombo(base.container,1,effect);
-			    	base.radio.focus();
 			    	return false;
 			    },function (e){
-			    	base.radio.blur();
 			    	e.stopPropagation();
 			    	toggleCombo(base.container,0,effect);
 			    	return false;
@@ -85,10 +86,8 @@
             	base.handler.eq(1).toggle(function(e){
 	            	e.stopPropagation();
 			    	toggleCombo(base.container,1,effect);
-			    	base.radio.focus();
 			    	return false;
 			    },function (e){
-			    	base.radio.blur();
 			    	e.stopPropagation();
 			    	toggleCombo(base.container,0,effect);
 			    	return false;
@@ -101,16 +100,7 @@
 		    	base.handler.eq(1).click();		
 		    	return false;
 		    });
-            
-            // Trigger radiobutton blur close fakebox
-            base.radio.focus(function(){
-                console.log("open trigger");
-            });
-            base.radio.blur(function(){
-                console.log("close trigger");
-                base.handler.eq(1).click();
-            });            
-            
+		    
             function toggleCombo(obj,select,effect){ // SELECT : Open / Close
 				var nb = $("li",obj).size();
 				
@@ -154,14 +144,16 @@
 			
 			
 			
+			
+			
 			// choice item
 			base.item.click(function(){
             	// on referme le layer
             	base.handler.eq(1).click();
             	itemValue = $("input:hidden",this).val();
-            	itemContent = $(this).text();
+            	itemContent = $(this).html();
             	
-            	base.handler.eq(0).text(itemContent); // On affiche le choix 
+            	base.handler.eq(0).html(itemContent); // On affiche le choix 
             	var liCurrent = $(this)
 
             	var pos = base.item.index(liCurrent)+base.$hasHeader;// position du click + entete du select
@@ -169,37 +161,62 @@
             		if($(this).is(':selected')) 
             			$(this).attr("selected","")
             	});
-            	
+				if ($(this).data('url') != "") {
+					var url = $(this).data('url');
+					var timeUrl = setTimeout(function(){
+						window.open(url,'_self');
+					},500);
+            	}
             	$('option', base.$el).eq(pos).attr("selected","selected");
             	return false;
             })
 			
 			 function createElem(obj){
 		    	var nbLi = $('option',obj).size();
-    	    	var construct  = "#"+base.$el.attr("id")+"_clone";
 		    	
-		    	
+		    	var construct  = "#"+base.$el.attr("id")+"_clone";
 		    	var id = base.$el.attr("id")+"_clone";
-		    	obj.parent().append("<div id='"+id+"' class='wrapper-fakebox'><ul></ul><input type='radio' style='display:none' /></div>");
+		    	obj.parent().append("<div id='"+id+"' class='wrapper-fakebox'><ul></ul></div>");
 		    	
 		    	var holder = $(construct);
 		    	var i=0;
 		    	
 		    	holder.prepend("<a href='#' class='arrow'>></a>&nbsp;");
-
-                $('option',obj).each(function(){
+		    	
+		    	// Generated new content
+		    	$('option',obj).each(function(j){
 		    		
 		    		var valueItem = $(this).val();
 		    		var textItem =  $(this).text();
-
+					var dataObject = $(this).data();
+					
 		    		if (valueItem != "") {
+		    			// check data() in option
+		    			
 		    			$("ul",holder).append("<li>"+textItem+"<input type='hidden' value='"+valueItem+"' name='value' /></li>");
+		    			
+		    			if (base.options.addData != "" ) {
+		    				var addData = base.options.addData;
+		    				if ($.isArray(addData)){
+		    					// tableau
+		    					for (i=0;i<addData.length;i++){
+		    						$("li",holder).eq(j-1).append("<span>"+$(this).data(addData[i])+"</span>")
+		    					}
+		    				}
+		    			}
+		    			
+		    			for (k in dataObject){
+		    				$("li",holder).eq(j-1).data(k,dataObject[k]);
+		    			}
+		    			
 		    			i++;
-		    		} else { 
+		    		} else {
 		    			base.$hasHeader = 1;
 		    			$(holder).prepend("<a href='#' class='titleCombo'>"+textItem+"</a>");
 		    		}
 		    	});
+				
+				
 				
 				base.heightItem = $("li",holder).outerHeight();
 				
@@ -221,31 +238,30 @@
 					});
 				}
 
-	    		if (nbLi == i)
+	    		if (nbLi == i && base.$hasHeader != 1)
 	    			$(holder).prepend("<a href='#' class='titleCombo'>"+base.options.textSelect+"</a>");
 		    	
 		    	
 		    	$("ul",holder).css("display","none")
 		    }
 		    
-		    
 		    function startAppair(obj,i,speed){
 		    	
 		    	var h = obj.outerHeight();
+		    	$(obj).css('display','block')
 		    	obj.animate({
-		    		"top":h*i,
-		    		"opacity":1,
-		    		"display":"block"
+		    		top:h*i,
+		    		opacity:1
 		    	},speed);
 		    }
 		    
 		    function disappair(obj,i,speed){
 		    	var h = obj.outerHeight();
 		    	obj.animate({
-		    		"top":0,
-		    		"opacity":0,
-		    		"display":"none"
+		    		top:0,
+		    		opacity:0
 		    	},function(){
+		    		$(this).css('display','none')
 		    		base.container.css("display","none");
 		    	});
 		    }
@@ -253,18 +269,17 @@
 		    	
 		    	var h = obj.outerHeight();
 		    	var w = obj.width();
-
+				$(obj).css('display','block')
 		    	obj.animate({
-		    		"top":h*i,
-		    		"left":0,
-		    		"opacity":1,
-		    		"display":"block"
+		    		top:h*i,
+		    		left:0,
+		    		opacity:1
 		    	},speed);
 		    }
 		    
 			function disappairLeft(obj,i,speed){
 		    	var h = obj.outerHeight();
-		    	var w = obj.width();
+		    	var w = (obj.width()/2);
 		    	var p = i % 2;
 				if (!p) {
 					var rw = "-"+w+"px";
@@ -272,11 +287,11 @@
 					var rw = w+"px"
 				}
 		    	obj.animate({
-		    		"top":0,
-		    		"left":rw,
-		    		"opacity":0,
-		    		"display":"none"
+		    		top:0,
+		    		left:rw,
+		    		opacity:0
 		    	},function(){
+		    		$(this).css('display','none')
 		    		base.container.css("display","none");
 		    	});
 		    }
@@ -300,7 +315,8 @@
         openEffect : "normal", // normal / stair
         decalage : 50, // temp decalage ms (only item)
         targetEffect : "list", // params : list | item
-        textSelect : "Choice" // Default Text if not value null for first item
+        textSelect : "Choice", // Default Text if not value null for first item
+        addData: ""
     };
     
     $.fn.fakebox = function(options){
