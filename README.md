@@ -10,11 +10,11 @@ http://guillaumedias.fr
 
 ##HTML
 &lt;select class="combo"> <br/>
-	&lt;option value="">Faire un choix&t;/option> <br/>
-	&lt;option value="1">Option 1&t;/option> <br/> 
-	&lt;option value="1">Option 2&t;/option> <br/>
-	&lt;option value="1">Option 3&t;/option> <br/>
-	&lt;option value="1">Option 4&t;/option> <br/>
+	&lt;option value="">Faire un choix&lt;/option> <br/>
+	&lt;option value="1">Option 1&lt;/option> <br/> 
+	&lt;option value="1">Option 2&lt;/option> <br/>
+	&lt;option value="1">Option 3&lt;/option> <br/>
+	&lt;option value="1">Option 4&lt;/option> <br/>
 &lt;/select>
 
 ## jQuery
