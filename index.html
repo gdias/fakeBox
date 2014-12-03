@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<title>Index test</title>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.fakebox.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/fakebox.jquery.css" />
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<script type="text/javascript">
+			$(function(){
+				// Exemple 1
+				$('#wrapper0').fakebox({
+					openSpeed : 500,
+					easing : "easeOutElastic"
+				}); 
+					
+				// Exemple 2
+				$('#wrapper1').fakebox({ 
+					 targetEffect:"item"
+				});
+				
+				// Exemple 3
+				$('#wrapper2').fakebox({ 
+					 openStyle : "inverse",
+					 easing : "easeOutBounce",
+					 openSpeed : 1500
+				});
+				
+				// Exemple 4
+				$('#wrapper3').fakebox({ 
+					 targetEffect:"item",
+					 openStyle : "inverse"
+				});
+				
+				// Exemple 5
+				$('#wrapper4').fakebox({ 
+					 targetEffect:"item",
+					 openEffect : "stair"
+				});
+				
+				// Exemple 6
+				$('#wrapper5').fakebox({ 
+					 targetEffect:"item",
+					 openEffect : "stair",
+					 openStyle : "inverse"
+				});
+			})
+		</script>
+	</head>
+	<body>
+		<div id="content">
+			<h1>Plugin FakeBox jQuery</h1>
+			<div id="present">
+				<section>
+					<header><h2>Présentation du plugin</h2></header>
+					<div class="expli">
+						Ce plugin permet de remplacer un élément <pre>&lt;select&gt;</pre> par une structure HTML permettant de manipuler bien plus facilement cet élément HTML.<br/> 
+						Le css vous permet également de modifier selon vos contraintes tous les paramètres d'affichage du résultat.<br/>
+						Vous pouvez ainsi transformer une simple comboBox en drop-down avec une touche de fun en plus !   
+						A travers les exemples ci-dessous, vous pourrez apprécier la facilité d'adaptation et de prise en main de ce plugin.
+					</div>
+				</section>
+				<section>
+					<header><h2>Exemple 1 : Default</h2></header>
+					<div>
+						<div>
+						<select id="wrapper0">
+							<option value="0">item0</option>
+							<option value="1">item1</option>
+							<option value="2">item2</option>
+							<option value="3">item3</option>
+						</select>
+						</div>
+						<pre>
+							&lt;script type="text/javascript"&gt;
+								$('#wrapper0').fakebox();
+							&lt;/script&gt;
+							
+							&lt;select id="wrapper0"&gt;
+								&lt;option value="0"&gt;item0&lt;/option&gt;
+								&lt;option value="1"&gt;item1&lt;/option&gt;
+								&lt;option value="2"&gt;item2&lt;/option&gt;
+								&lt;option value="3"&gt;item3&lt;/option&gt;
+							&lt;/select&gt;
+						</pre>
+						
+					</div>
+				</section>
+				<section>
+					<header><h2>Exemple 2 : Target Item </h2></header>
+					<div>
+						<div>
+						<select id="wrapper1">
+							<option value="">Sélectionner</option>
+							<option value="0">item0</option>
+							<option value="1">item1</option>
+							<option value="2">item2</option>
+							<option value="3">item3</option>
+						</select>
+						</div>
+						<pre>
+							&lt;script type="text/javascript"&gt;
+								$('#wrapper1').fakebox({
+									 targetEffect:"item",
+									 openStyle : "inverse"
+								});
+							&lt;/script&gt;
+							
+							&lt;select id="wrapper1"&gt;
+								&lt;option value=""&gt;Sélectionner&lt;/option&gt;
+								&lt;option value="0"&gt;item0&lt;/option&gt;
+								&lt;option value="1"&gt;item1&lt;/option&gt;
+								&lt;option value="2"&gt;item2&lt;/option&gt;
+								&lt;option value="3"&gt;item3&lt;/option&gt;
+							&lt;/select&gt;
+						</pre>
+						
+					</div>
+				</section>
+				<section>
+					<header><h2>Exemple 3 : Invert mode and easing</h2></header>
+					<div>
+						<div>
+						<select id="wrapper2">
+							<option value="">Sélectionner</option>
+							<option value="0">item0</option>
+							<option value="1">item1</option>
+							<option value="2">item2</option>
+							<option value="3">item3</option>
+							<option value="4">item4</option>
+						</select>
+						</div>
+						<pre>
+							&lt;script type="text/javascript"&gt;
+								$('#wrapper2').fakebox({
+									 effect : "easeOutCirc",
+									 openStyle : "inverse"
+								});
+							&lt;/script&gt;
+							
+							&lt;select id="wrapper2"&gt;
+								&lt;option value=""&gt;Sélectionner&lt;/option&gt;
+								&lt;option value="0"&gt;item0&lt;/option&gt;
+								&lt;option value="1"&gt;item1&lt;/option&gt;
+								&lt;option value="2"&gt;item2&lt;/option&gt;
+								&lt;option value="3"&gt;item3&lt;/option&gt;
+							&lt;/select&gt;
+						</pre>
+						
+					</div>
+				</section>
+				<section>
+					<header><h2>Exemple 4 : Invert mode Item and easing</h2></header>
+					<div>
+						<div>
+						<select id="wrapper3">
+							<option value="">Sélectionner</option>
+							<option value="0">item0</option>
+							<option value="1">item1</option>
+							<option value="2">item2</option>
+							<option value="3">item3</option>
+						</select>
+						</div>
+						<pre>
+							&lt;script type="text/javascript"&gt;
+								$('#wrapper3').fakebox({
+									targetEffect:"item",
+									effect : "easeOutCirc",
+									openStyle : "inverse"
+								});
+							&lt;/script&gt;
+							
+							&lt;select id="wrapper3"&gt;
+								&lt;option value=""&gt;Sélectionner&lt;/option&gt;
+								&lt;option value="0"&gt;item0&lt;/option&gt;
+								&lt;option value="1"&gt;item1&lt;/option&gt;
+								&lt;option value="2"&gt;item2&lt;/option&gt;
+								&lt;option value="3"&gt;item3&lt;/option&gt;
+							&lt;/select&gt;
+						</pre>
+						
+					</div>
+				</section>
+				<section>
+					<header><h2>Exemple 5 :  Item Mode and stair Effect</h2></header>
+					<div>
+						<div>
+						<select id="wrapper4">
+							<option value="">Sélectionner</option>
+							<option value="0">item0</option>
+							<option value="1">item1</option>
+							<option value="2">item2</option>
+							<option value="3">item3</option>
+							<option value="4">item4</option>
+						</select>
+						</div>
+						<pre>
+							&lt;script type="text/javascript"&gt;
+								$('#wrapper4').fakebox({
+									targetEffect:"item",
+									openEffect : "stair"
+								});
+							&lt;/script&gt;
+							
+							&lt;select id="wrapper4"&gt;
+								&lt;option value=""&gt;Sélectionner&lt;/option&gt;
+								&lt;option value="0"&gt;item0&lt;/option&gt;
+								&lt;option value="1"&gt;item1&lt;/option&gt;
+								&lt;option value="2"&gt;item2&lt;/option&gt;
+								&lt;option value="3"&gt;item3&lt;/option&gt;
+								&lt;option value="4"&gt;item3&lt;/option&gt;
+							&lt;/select&gt;
+						</pre>
+						
+					</div>
+				</section>
+				<section>
+					<header><h2>Exemple 6 :  Item Mode and stair Effect and Invert Mode</h2></header>
+					<div>
+						<div>
+						<select id="wrapper5">
+							<option value="">Sélectionner</option>
+							<option value="0">item0</option>
+							<option value="1">item1</option>
+							<option value="2">item2</option>
+							<option value="3">item3</option>
+							<option value="4">item4</option>
+						</select>
+						</div>
+						<pre>
+							&lt;script type="text/javascript"&gt;
+								$('#wrapper5').fakebox({
+									targetEffect:"item",
+									openEffect : "stair",
+									openStyle : "inverse"
+								});
+							&lt;/script&gt;
+							
+							&lt;select id="wrapper5"&gt;
+								&lt;option value=""&gt;Sélectionner&lt;/option&gt;
+								&lt;option value="0"&gt;item0&lt;/option&gt;
+								&lt;option value="1"&gt;item1&lt;/option&gt;
+								&lt;option value="2"&gt;item2&lt;/option&gt;
+								&lt;option value="3"&gt;item3&lt;/option&gt;
+								&lt;option value="4"&gt;item3&lt;/option&gt;
+							&lt;/select&gt;
+						</pre>
+						
+					</div>
+				</section>
+			</div>			
+		</div>
+	</body>
+</html>
