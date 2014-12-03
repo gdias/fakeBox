@@ -5,12 +5,11 @@ La structure des plugin jQuery, permet d'etre plus adaptable à tous les cas de 
 
 #Get Started
 ...
-<select>
-	<option value="">Faire un choix</option>
-	<option value="1">Option 1</option>
-	<option value="1">Option 2</option>
-	<option value="1">Option 3<option>
-	<option value="1">Option 4</option>
-</select>
-...
+&lt;select>
+	&lt;option value="">Faire un choix&t;/option>
+	&lt;option value="1">Option 1&t;/option>
+	&lt;option value="1">Option 2&t;/option>
+	&lt;option value="1">Option 3&t;/option>
+	&lt;option value="1">Option 4&t;/option>
+&lt;/select>
 
