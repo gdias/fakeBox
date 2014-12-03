@@ -3,15 +3,15 @@
 The Fakebox plugin enables more customizable combobox. This plugin transform this HTML element in UL, LI tags while reproducing his behavior.
 It have a very simple use and can be called with just a one single line.
 
-#Integrate Demo
+##Integrate Demo
 http://www.beatsqueeze.com/album/viewAlbum/25
 
-#More tests case
+##More tests case
 http://data.guillaumedias.fr/fakeBox/
 
-#Multiple Example Usage
+##Multiple Example Usage
 
-##HTML
+###HTML
 &lt;select class="combo"> <br/>
 	&lt;option value="">Faire un choix&lt;/option> <br/>
 	&lt;option value="1">Option 1&lt;/option> <br/> 
@@ -20,13 +20,13 @@ http://data.guillaumedias.fr/fakeBox/
 	&lt;option value="1">Option 4&lt;/option> <br/>
 &lt;/select>
 
-## jQuery
+### jQuery
 Use this plugin as follow
 
-`$('.combo').fakeBox();`
+`$('.combo').fakeBox();
 
 
-#Parameter's Plugin
+##Parameter's Plugin
 
 	| Parameter    | Explain	                    		  		 | Default |
 	|--------------|-------------------------------------------------|---------|
