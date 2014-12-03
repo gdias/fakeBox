@@ -23,9 +23,7 @@ http://data.guillaumedias.fr/fakeBox/
 ## jQuery
 Use this plugin as follow
 
-...
-$('.combo').fakeBox();
-...
+`$('.combo').fakeBox();`
 
 
 #Parameter's Plugin
