@@ -13,7 +13,7 @@ http://data.guillaumedias.fr/fakeBox/
 
 ###HTML
 ```
-<select class="combo"> <br/>
+<select class="combo">
 	<option value="">Choose</option>
 	<option value="1">Option #1</option>
 	<option value="1">Option #2</option>
